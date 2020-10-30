@@ -164,7 +164,7 @@ const Confirmations = ({transaction: {blockNumber}}: TransactionCellProps): JSX.
 }
 
 export const TxDetailsCell = ({transaction}: TransactionCellProps): JSX.Element => {
-  const {hash, from, to, gas, gasPrice, gasUsed} = transaction
+  const {hash, from, to, gas, gasPrice, gasUsed, contractAddress} = transaction
   return (
     <>
       <div className="call-details two-col-table">
@@ -180,6 +180,14 @@ export const TxDetailsCell = ({transaction}: TransactionCellProps): JSX.Element 
         <div className="monospace">
           <Address address={to ?? ''} />
         </div>
+        {contractAddress && (
+          <>
+            <div>Contract address</div>
+            <div className="monospace">
+              <Address address={contractAddress} />
+            </div>
+          </>
+        )}
         <div>
           <Trans k={['wallet', 'label', 'transactionGasLimit']} />:
         </div>
